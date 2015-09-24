@@ -7,3 +7,8 @@ Feature: resource selection
     Given the video player is loaded
     When i request the network state
     Then i should see the state: NETWORK_EMPTY
+    
+  Scenario: network is loading
+    Given the video player is loaded
+    When i set the video source
+    Then i should see the state: NETWORK_LOADED     
