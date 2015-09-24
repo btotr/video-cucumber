@@ -19,17 +19,14 @@ module.exports = function () {
             expect(video).to.not.be.undefined;
             this.browser.getAttribute(video, "networkState", function(error, state){
                 expect(state).to.not.be.undefined;
-                this.state = networkStates[state]
+                this.arguments = [networkStates[state]]
                 done();
             }.bind(this))
         }.bind(this));
     });
     
     this.Then(/^i should see the state: ([^"]*)$/, function (networkState, done) {
-        expect(this.state).to.equal(networkState);
-        // clean
-        this.browser.quit();
-        this.state = undefined;
+        expect(this.arguments[0]).to.equal(networkState);
         done();
     });
 }
