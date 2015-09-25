@@ -32,16 +32,9 @@ module.exports = function () {
     });
     
     this.When("i set the video source", function (done) {
-        this.browser.elementById('player', function (error, video) {
-            expect(video).to.not.be.undefined;
-            this.browser.setAttribute(video, "src", VIDEO_URL, function(error, test){
-                console.log(test)
-                this.browser.getAttribute(video, "networkState", function(error, state){
-                    expect(state).to.not.be.undefined;
-                    this.arguments = [networkStates[state]]
-                    done();
-                }.bind(this))
-            }.bind(this))
-        }.bind(this));
+        executeAsync('var callback = arguments[arguments.length - 1]; var video = document.getElementsByTagName("video")[0]; video.src = '+VIDEO_URL+'; video.addEventListener("loadstart", function(e){callback(e)})', "",function(error, response){
+            console.log(response);
+            done();
+        })
     });
 }
