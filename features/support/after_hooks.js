@@ -1,10 +1,10 @@
 var afterHooks = function () {
-  this.After(function (callback) {
-    // close browser
-    this.browser.end()
+  this.After(function (done) {
     // arguments are used to pass arguments between the steps
     this.arguments = [];
-    callback();
+    // refresh browser
+    this.browser.end();
+    done();
   });
 };
 

@@ -10,9 +10,10 @@ var options = {
     key: process.env.SAUCE_ACCESS_KEY,
     logLevel: 'silents'
 }
-var World = function World(callback) {
+
+var World = function World(done) {
     this.arguments = [];
-    this.browser = webdriverio.remote(options).init().call(callback);
+    this.browser = webdriverio.remote(options).init().call(done);
 };
 
 exports.World = World;
