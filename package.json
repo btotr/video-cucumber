@@ -1,8 +1,7 @@
 {
   "devDependencies": {
     "cucumber": "latest",
-    "wd": "~0.3.12",
     "chai": "~3.2.0",
-    "colors": "~1.1.2"
+    "webdriverio": "~3.2.4"
   }
 }
