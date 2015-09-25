@@ -1,5 +1,6 @@
 var webdriverio = require('webdriverio');
 
+var url = "http://188.226.244.202:8000/src/";
 var options = {
     desiredCapabilities: {
         browserName: 'chrome'
@@ -13,7 +14,9 @@ var options = {
 
 var World = function World(done) {
     this.arguments = [];
-    this.browser = webdriverio.remote(options).init().call(done);
+    var remote = webdriverio.remote(options)
+    this.browser = remote.init().url(url).call(done);
+    
 };
 
 exports.World = World;
