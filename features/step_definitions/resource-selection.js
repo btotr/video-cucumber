@@ -28,9 +28,13 @@ module.exports = function () {
             }.bind(this));
     });
     
-        
     this.Then(/^i should see the state: ([^"]*)$/, function (networkState) {
         expect(this.arguments[0]).to.equal(networkState);
+    });
+    
+        
+    this.Then(/^i should get a ([^"]*) event$/, function (event) {
+        expect(this.arguments[1]).to.equal(event);
     });
     
     this.When("i set the video source", function (done) {
@@ -46,7 +50,7 @@ module.exports = function () {
                 }, VIDEO_URL)
             .then(
                 function(res){
-                    this.arguments = [networkStates[res]];
+                    this.arguments = [networkStates[res], "loadstart"];
                 }.bind(this), 
                 function(error){
                     console.error(error)

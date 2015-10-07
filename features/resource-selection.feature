@@ -11,4 +11,5 @@ Feature: resource selection
   Scenario: network is loading
     Given the video player is loaded
     When i set the video source
-    Then i should see the state: NETWORK_LOADING      
+    Then i should get a loadstart event 
+    And i should see the state: NETWORK_LOADING      
