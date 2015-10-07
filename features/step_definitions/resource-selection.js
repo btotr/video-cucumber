@@ -35,17 +35,17 @@ module.exports = function () {
     
     this.When("i set the video source", function (done) {
         this.browser
-            .timeoutsAsyncScript(5000)
-            .selectorExecuteAsync("#player", function(player, url, callback){
-                    player.addEventListener("loadstart", function(e) {
+            .timeoutsAsyncScript(15000)
+            .selectorExecuteAsync("//video", function(videos, url, callback){
+                    var player = videos[0];
+                    player.addEventListener('loadstart', function(e){
                         callback(e.target.networkState);
-                    })
+                    }, false);
                     player.src = url;
                     player.play();
                 }, VIDEO_URL)
             .then(
                 function(res){
-                    console.log(res)
                     this.arguments = [networkStates[res]];
                 }.bind(this), 
                 function(error){
