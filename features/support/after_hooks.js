@@ -3,7 +3,7 @@ var afterHooks = function () {
     // arguments are used to pass arguments between the steps
     this.arguments = [];
     // close browser
-    this.browser.close();
+    this.browser.end();
     done();
   });
 };
